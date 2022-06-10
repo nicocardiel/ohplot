@@ -237,9 +237,8 @@ def main(args=None):
     ax.plot(xtelluric, ytelluric, 'C3-', label='telluric')
 
     # overplot OH lines from Oliva et al. (2003)
-    ax.stem(ohlines_oliva_wave, ohlines_oliva_flux, 'C4-',
-            markerfmt=' ', basefmt='C4-',
-            label='OH (O2003)')
+    ax.stem(ohlines_oliva_wave, ohlines_oliva_flux, linefmt='C4-',
+            markerfmt=' ', basefmt='C4-', label='OH (O2003)')
 
     # overplot convolved iraf lines
     if not args.noiraf:
