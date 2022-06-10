@@ -1,9 +1,12 @@
-# Copyright 2019 Universidad Complutense de Madrid
+# Copyright 2019-2022 Universidad Complutense de Madrid
 #
-# This file is part of PyEmir
+# Author: Nicolás Cardiel (cardiel@ucm.es)
 #
 # SPDX-License-Identifier: GPL-3.0+
-# License-Filename: LICENSE.txt
+# License-Filename: LICENSE
+#
+# This script overplots the expected OH emission lines and
+# a user-defined spectrum
 #
 
 import argparse
