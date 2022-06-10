@@ -23,7 +23,7 @@ The displayed OH lines correspond to the Iraf line list and to the [Oliva et al.
 (2013)](https://ui.adsabs.harvard.edu/abs/2013A%26A...555A..78O/abstract)
 list. Note that both lists are not identical.
 
-Usage:
+## Usage
 
 ```bash
 $ python ohplot.py --kinn 10 --redshift 1.6
