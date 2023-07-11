@@ -25,6 +25,7 @@ list. Note that both lists are not identical.
 
 ## Usage
 
+### Command line
 ```bash
 $ python ohplot.py --kinn 10 --redshift 1.6
 $ python ohplot.py --sdss 27 --redshift 1.6 --emlines
@@ -37,4 +38,7 @@ To see the list of additional parameters:
 $ python ohplot.py --help
 ```
 
+### Jupyter notebook
+
+See examples in `examples_ohplot.ipynb`.
 
