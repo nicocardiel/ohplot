@@ -225,7 +225,8 @@ def ohplot(
     # overplot template spectrum
     if wave_template is not None:
         sp_scaled = flux_afactor + sp_template * flux_bfactor
-        ax.plot(wave_template * (1 + redshift), sp_scaled, 'C7-')
+        ax.plot(wave_template * (1 + redshift), sp_scaled, 'w-', linewidth=3)
+        ax.plot(wave_template * (1 + redshift), sp_scaled, 'C7-', linewidth=1)
 
     # plot limits
     ax.set_xlim([wvmin, wvmax])
