@@ -267,6 +267,9 @@ def ohplot(
                     color = "black"
                 xdum = wavedum * (1 + redshift)
                 ax.plot([xdum, xdum], [0, ymax - 0.10 * dy], "--", linewidth=1, color=color)
+                print(f"\nOverplotting emission line {namedum}")
+                print(f"- Rest wavelength.... (Angstroms): {wavedum:.2f}")
+                print(f"- Observed wavelength (Angstroms): {xdum:.2f}")
                 ax.text(
                     wavedum * (1 + redshift),
                     ymax - delta_text,
