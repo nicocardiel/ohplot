@@ -257,7 +257,7 @@ def ohplot(
                     delta_text = 0.08 * dy
                     color = "black"
                 xdum = wavedum * (1 + redshift)
-                ax.plot([xdum, xdum], [0, ymax - 0.10 * dy], "k--", linewidth=1, color=color)
+                ax.plot([xdum, xdum], [0, ymax - 0.10 * dy], "--", linewidth=1, color=color)
                 ax.text(
                     wavedum * (1 + redshift),
                     ymax - delta_text,
