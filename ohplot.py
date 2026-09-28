@@ -215,6 +215,10 @@ def ohplot(
     # plot limits
     ax.set_xlim([wvmin, wvmax])
     ymin, ymax = ax.get_ylim()
+    dy = ymax - ymin
+    ymin = 0
+    ymax = ymax + 0.05 * dy
+    ax.set_ylim(ymin, ymax)
 
     # typical emission lines (vacuum wavelengths in Angstroms)
     if emlines:
@@ -236,23 +240,32 @@ def ohplot(
             "[Si VI],               19630.0",
             "${\\rm H}_2$ 1-0 S(2), 20338.0",
             "${\\rm H}_2$ 1-0 S(1), 21218.0",
-            "${\\rm Br}\\gamma$,     21661.2",
+            "${\\rm Br}\\gamma$,    21661.2",
             "${\\rm H}_2$ 1-0 S(0), 22235.0",
         ]
         dy = ymax - ymin
+        nplot = 0
         for item in emission_lines:
             namedum, wavedum = item.rsplit(",", maxsplit=1)
             wavedum = float(wavedum)
             if wvmin < wavedum * (1 + redshift) < wvmax:
+                nplot += 1
+                if nplot % 2 == 0:
+                    delta_text = 0.04 * dy
+                    color = "C0"
+                else:
+                    delta_text = 0.08 * dy
+                    color = "black"
                 xdum = wavedum * (1 + redshift)
-                ax.plot([xdum, xdum], [0, ymax - 0.05 * dy], "k--", linewidth=1)
+                ax.plot([xdum, xdum], [0, ymax - 0.10 * dy], "k--", linewidth=1, color=color)
                 ax.text(
                     wavedum * (1 + redshift),
-                    ymax - 0.035 * dy,
+                    ymax - delta_text,
                     rf"{namedum}",
                     fontsize=10,
                     horizontalalignment="center",
                     verticalalignment="bottom",
+                    color=color
                 )
 
     # overplot template spectrum
