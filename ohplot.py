@@ -71,6 +71,7 @@ def ohplot(
     title=None,
     noiraf=False,
     nodelta=False,
+    emir_filters=False,
     echo=False,
 ):
 
@@ -212,6 +213,14 @@ def ohplot(
     # overplot convolved Oliva et al. (2003) lines
     ax.plot(xwave_oliva, sp_oh_oliva, "C1-", label="OH (O2003)")
 
+    # EMIR filters
+    if emir_filters:
+        for filter_name, color in zip(["YJ", "HK", "K"], ["C0", "C2", "C3"]):
+            emir_table = np.genfromtxt(f"data/filter_EMIR_{filter_name}spec.txt")
+            wave_emir_filter = emir_table[:, 0] * 10000  # convert from microns to Angstroms
+            transmission_emir_filter = emir_table[:, 1] / 100  # convert from percentage to fraction
+            ax.plot(wave_emir_filter, transmission_emir_filter, color=color, label=f"EMIR {filter_name} filter")
+
     # plot limits
     ax.set_xlim([wvmin, wvmax])
     ymin, ymax = ax.get_ylim()
@@ -329,6 +338,7 @@ def main(args=None):
     parser.add_argument("--flux_bfactor", help="Multiplicative factor for template spectrum", type=float, default=1.0)
     parser.add_argument("--title", help="Title for the plot", type=str)
     parser.add_argument("--emlines", help="overplot typical emission lines", action="store_true")
+    parser.add_argument("--emir-filters", help="overplot EMIR filters", action="store_true")
     parser.add_argument("--nodelta", help="do not overplot delta functions for OH lines", action="store_true")
     parser.add_argument("--noiraf", help="do not overplot OH lines from Iraf", action="store_true")
     parser.add_argument(
@@ -360,6 +370,7 @@ def main(args=None):
         title=args.title,
         noiraf=args.noiraf,
         nodelta=args.nodelta,
+        emir_filters=args.emir_filters,
         echo=args.echo,
     )
     plt.tight_layout()
